@@ -19,36 +19,31 @@ const GetData = () => {
   }, []);
   return (
     <>
-      {/* <div>
-        {data.map((item) => {
-          return (
-            <div>
-              <h2>name: {item.name}</h2>
-              <h2>name: {item.id}</h2>
-            </div>
-          );
-        })}
-      </div> */}
-
       <div className="flex-container">
-        {data.map((items) => {
-          return (
-            <div className="col card" key={items.id}>
-              <div className="img-placeholder">
-                <img src={items.avatar} />
-              </div>
-              <div className="title">
-                <h3>
-                  <span className="title-content">Name</span>:{items.name}
-                </h3>
-                <h3>
-                  <span className="title-content">Created Time</span>:
-                  {new Date(items.createdAt).toLocaleString()}
-                </h3>
-              </div>
-            </div>
-          );
-        })}
+        {loading ? (
+          <div className="loader"></div>
+        ) : (
+          <>
+            {data.map((items) => {
+              return (
+                <div className="col card" key={items.id}>
+                  <div className="img-placeholder">
+                    <img src={items.avatar} />
+                  </div>
+                  <div className="title">
+                    <h3>
+                      <span className="title-content">Name</span>:{items.name}
+                    </h3>
+                    <h3>
+                      <span className="title-content">Created Time</span>:
+                      {new Date(items.createdAt).toLocaleString()}
+                    </h3>
+                  </div>
+                </div>
+              );
+            })}
+          </>
+        )}
       </div>
     </>
   );
