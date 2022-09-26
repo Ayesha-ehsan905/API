@@ -1,9 +1,10 @@
 import axios from "axios";
+import client from "../api/APIS";
 import { useState, useEffect } from "react";
 import { Get } from "../utlis/Get";
 import "../../src/App.css";
 
-const GetData = (props) => {
+const GetData = () => {
   const [data, setdata] = useState([]);
   const [loading, setloading] = useState(true);
 
@@ -21,7 +22,17 @@ const GetData = (props) => {
       }
     };
     fetchPost();
-  }, [props.Flag]);
+  }, []);
+
+  const handleDelete = async (id) => {
+    await client.delete(`/users/${id}`);
+    var newsdata = data.filter((items) => {
+      console.log(items.id, id);
+      return items.id !== id;
+    });
+    setdata(newsdata);
+    console.log(id);
+  };
   return (
     <>
       <div className="flex-container">
@@ -31,20 +42,26 @@ const GetData = (props) => {
           <>
             {data.map((items) => {
               return (
-                <div className="col card" key={items.id}>
-                  <div className="img-placeholder">
-                    <img src={items.avatar} />
+                <>
+                  <div className="col card" key={items.id}>
+                    <div className="img-placeholder">
+                      <img src={items.avatar} />
+                    </div>
+                    <div className="title">
+                      <h3>
+                        <span className="title-content">Name</span>:{items.name}
+                      </h3>
+                      <h3>
+                        <span className="title-content">Created Time</span>:
+                        {new Date(items.createdAt).toLocaleString()}
+                      </h3>
+                    </div>
+
+                    <button onClick={() => handleDelete(items.id)}>
+                      Delete
+                    </button>
                   </div>
-                  <div className="title">
-                    <h3>
-                      <span className="title-content">Name</span>:{items.name}
-                    </h3>
-                    <h3>
-                      <span className="title-content">Created Time</span>:
-                      {new Date(items.createdAt).toLocaleString()}
-                    </h3>
-                  </div>
-                </div>
+                </>
               );
             })}
           </>

@@ -38,6 +38,10 @@ export const AddData = () => {
     console.log(response.data);
     setFlag(true);
   };
+
+  if (flag) {
+    return <GetData />;
+  }
   return (
     <>
       <div className="form-container">
@@ -81,8 +85,7 @@ export const AddData = () => {
           </form>
         </div>
       </div>
-
-      <GetData Flag={flag} />
+      <GetData />
     </>
   );
 };
