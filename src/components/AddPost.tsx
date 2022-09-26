@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import App from "../App";
 import { addPosts, Get } from "../utlis/Get";
 import GetData from "./GetData";
 import "./Style.css";
@@ -40,7 +41,7 @@ export const AddData = () => {
   };
 
   if (flag) {
-    return <GetData />;
+    // return <App />;
   }
   return (
     <>
