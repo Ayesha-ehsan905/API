@@ -9,11 +9,16 @@ const GetData = () => {
 
   useEffect(() => {
     const fetchPost = async () => {
-      setloading(true);
-      let response = await Get();
-      //   console.log((await response).data);
-      setdata(response.data);
-      setloading(false);
+      try {
+        setloading(true);
+        let response = await Get();
+        //   console.log((await response).data);
+        setdata(response.data);
+      } catch (error) {
+        console.log(error);
+      } finally {
+        setloading(false);
+      }
     };
     fetchPost();
   }, []);
