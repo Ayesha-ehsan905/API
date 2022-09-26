@@ -1,5 +1,6 @@
 import { useState } from "react";
 import "./App.css";
+import { AddData } from "./components/AddPost";
 import GetData from "./components/GetData";
 
 function App() {
@@ -7,6 +8,7 @@ function App() {
 
   return (
     <div className="App">
+      <AddData />
       <GetData />
     </div>
   );

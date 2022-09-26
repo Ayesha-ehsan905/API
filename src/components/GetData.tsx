@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import { Get } from "../utlis/Get";
 import "../../src/App.css";
 
-const GetData = () => {
+const GetData = (props) => {
   const [data, setdata] = useState([]);
   const [loading, setloading] = useState(true);
 
@@ -21,7 +21,7 @@ const GetData = () => {
       }
     };
     fetchPost();
-  }, []);
+  }, [props.Flag]);
   return (
     <>
       <div className="flex-container">
