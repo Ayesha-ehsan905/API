@@ -34,6 +34,7 @@ export const AddData = () => {
   };
 
   if (flag) {
+    return <AddData />;
   }
   return (
     <>
