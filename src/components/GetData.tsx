@@ -1,7 +1,7 @@
 import axios from "axios";
 import client from "../api/APIS";
 import { useState, useEffect } from "react";
-import { Get } from "../utlis/Get";
+import { getUsers } from "../utlis/Users";
 import "../../src/App.css";
 
 const GetData = () => {
@@ -12,8 +12,7 @@ const GetData = () => {
     const fetchPost = async () => {
       try {
         setloading(true);
-        let response = await Get();
-        //   console.log((await response).data);
+        let response = await getUsers();
         setdata(response.data);
       } catch (error) {
         console.log(error);

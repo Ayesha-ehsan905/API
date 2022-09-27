@@ -1,14 +1,12 @@
 import { useEffect, useState } from "react";
 import App from "../App";
-import { addPosts, Get } from "../utlis/Get";
+import { addUser, getUsers } from "../utlis/Users";
 import GetData from "./GetData";
 import "./Style.css";
 
 export const AddData = () => {
   const [name, setname] = useState("");
   const [flag, setFlag] = useState(false);
-  //   const [lastSeen, setlastSeen] = useState("");
-  //   const [image, setimage] = useState("");
 
   const [data, setdata] = useState([] as any);
 
@@ -16,7 +14,7 @@ export const AddData = () => {
     setFlag(false);
     const fetchPost = async () => {
       try {
-        let response = await Get();
+        let response = await getUsers();
 
         setdata(response.data);
       } catch (error) {
@@ -29,19 +27,13 @@ export const AddData = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // setimage(
-    //   "https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/581.jpg"
-    // );
-
-    // setlastSeen("1664186162866");
-    const response = await addPosts(name);
+    const response = await addUser(name);
     setdata((posts) => [response.data, ...posts]);
     console.log(response.data);
     setFlag(true);
   };
 
   if (flag) {
-    // return <App />;
   }
   return (
     <>
@@ -60,16 +52,6 @@ export const AddData = () => {
                 onChange={(e) => setname(e.target.value)}
               />
             </div>
-
-            {/* <div className="form-group">
-              <label htmlFor="password">Last Seen</label>
-              <input
-                type="text"
-                name="seen"
-                value={lastSeen}
-                onChange={(e) => setlastSeen(e.target.value)}
-              />
-            </div> */}
 
             <div className="" style={{ marginTop: "50px" }}>
               <label htmlFor="password">Image</label>
